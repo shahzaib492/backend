@@ -91,7 +91,6 @@ exports.LoginWithGoogle = async (req, res, next) => {
             const token = jwt.sign({ email: savedUser.email, userId: savedUser._id, role: savedUser.role }, process.env.JWT_KEY, {
                 expiresIn: "1h"
             })
-            console.log(savedUser)
             res.status(200).json({
                 message: "Successfully Login With google",
                 expiresIn: 3600,

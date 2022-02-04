@@ -43,10 +43,20 @@ exports.createUser = async (req, res, next) => {
 
             subject: ` Welcome ${user.name} your Credentials are : -`,
             html: `
-                    <div>
-                        <h6>Email is :- ${user.email}</h6>
-                        <h6>Password is :- ${password}</h6>
-                    </div>
+
+            <div   style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;"  >
+                  <h1> ${(user.gender==='M')?'Mr':'Mrs'} ${user.name}</h1>
+                    <p style="color: grey;
+                    font-size: 10px;">Email :- ${user.email}</p>
+                    <p style="color: grey;
+                    font-size: 10px;">Password :- ${password}</p>
+                    <p>From @User Profile</p> 
+            </div>
+
                     `,
         };
 
@@ -99,9 +109,7 @@ exports.updateUser = async (req, res, next) => {
     try {
         const id = req.params.id;
         const { name, email, gender, about,strength } = req.body;
-
         const user = await User.findOne({ _id: id });
-        console.log(strength)
         if (user) {
             user.name = name;
             user.email = email;
